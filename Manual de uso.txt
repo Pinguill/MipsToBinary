@@ -1,0 +1,39 @@
+Mips a binario
+
+Bienvenido al manual de uso de nuestro conversor de mips a binario,
+
+al ejecutar el programa va a apreciar un pequeño menú donde puede
+
+seleccionar la accion que desea realizar, ya sea convertir su codigo
+
+mips a binario o cerrar el programa, al seleccionar la primera opcion
+
+el programa va a leer el archivo llamado "mipsToBinary.txt" que se 
+
+encuentra ubicado en la carpeta "mips", usted puede abri el archivo
+
+y poner ahí su codigo de mips o cambiar el archivo txt por uno donde
+
+se encuentre su codigo, pero tendria que llevar el mismo nombre
+
+"mipsToBinary.txt" para su correcto funcionamiento, habiendo entendido
+
+esto, el programa procede a leer el archivo y verificar la correctitud
+
+del syntaxis de su codigo, en caso alguno de que se presente algun error
+
+en el syntaxis el programa le avisará para que haga su correcta escritura,
+
+de no presentar problema alguno, el programa se encargará de printear en
+
+panralla su codigo mips y su correspondiente en binario, además de exportar
+
+un archivo con su codigo en binario, habiendo finalizado este proceso
+
+usted tendrá la oportunidad de elegir si desea convertir otro codigo mips
+
+a binario o si desea cerrar el programa, en el caso que desee convertir otro
+
+archivo mips deberá de hacer el correcto cambio del contenido del txt ya previamente
+
+mencionado.
