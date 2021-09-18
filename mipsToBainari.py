@@ -1,6 +1,41 @@
 from sys import stdin
 import os
 
+diccionarioRegister = {"$zero":"00000", "$at": "00001", "$v0":"00010", "$v1":"00011", "$a0":"00100", "$a1":"00101", "$a2":"00110", "$a3":"00111", "$t0":"01000", "$t1":"01001", "$t2":"01010", "$t3":"01011", "$t4":"01100", "$t5":"01101", "$t6":"01110", "$t7":"01111", "$s0":"10000", "$s1":"10001", "$s2":"10010", "$s3":"10011", "$s4":"10100", "$s5":"10101", "$s6":"10110", "$s7":"10111", "$t8":"11000", "$t9":"11001", "$k0":"11010", "$k1":"11011", "$gp":"11100", "$sp":"11101", "$fp":"11110", "$ra":"11111"}
+functs = {"sll":"000000", "srl":"000010", "sra":"000011", "sllv":"000100", "srlv":"000110", "srav":"000111", "jr":"001000", "jalr":"001001", "movz":"001010", "movn":"001011", "syscall":"001100", "break":"001101", "sync":"001111", "mfhi":"010000", "mthi":"010001", "mflo":"010010", "mtlo":"010011", "mult":"011000", "multu":"011001", "div":"011010", "divu":"011011", "add":"100000", "addu":"100001", "sub":"100010", "subu":"100011", "and":"100100", "or":"100101", "xor":"100110", "nor":"100111", "slt":"101010", "sltu":"101011", "tge":"110000", "tgeu":"110001", "tlt":"110010", "tltu":"110011", "teq":"110100", "tne":"110110"}
+
+traduccion = []
+
+def translateR(matriz): #Se tiene que pasar la matrix en la posicion en la que se va a traducir
+    opcode = "000000"
+    rd = "00000"
+    rs = "00000"
+    rt = "00000"
+    shamt = "00000"
+    funct = "000000"
+    x = matriz[0].replace(',', ' ').split()
+    if x[0] == "slr" or x[0] == "sll":
+        rd = diccionarioRegister[x[1]]
+        rt = diccionarioRegister[x[2]]
+        shamt = format(int(x[3]), '05b')
+        if x[0] == "slr":
+            funct = functs["slr"]
+        elif x[0] == "sll":
+            funct = functs["sll"]
+    else:
+        rd = diccionarioRegister[x[1]]
+        rs = diccionarioRegister[x[2]]
+        rd = diccionarioRegister[x[3]]
+        funct = functs[x[0]]
+
+def translateI(matriz):
+    opcode = "000000"
+    rs = "00000"
+    rt = "00000"
+    immediate = "0000000000000000"
+    x = matriz[0].replace(',', ' ').split()
+
+
 def clear():
     os.system('cls')
 def lectura(matrix):
