@@ -35,6 +35,10 @@ def translateI(matriz):
     immediate = "0000000000000000"
     x = matriz[0].replace(',', ' ').split()
 
+def translateJ(matriz):
+    opcode = "000000"
+    address = "00000000000000000000000000"
+
 
 def clear():
     os.system('cls')
