@@ -51,9 +51,9 @@ def lectura(matrix):
     print(matrix)
     
 def verificar(matrix):
-    diccionario1 = {"add":1,"addu":2,"addi":3,"addiu":4,"and":5,"andi":6,"div":7,"divu":8,"mult":9,"multu":10,
-    "nor":11,"or":12,"ori":13,"sll":14,"beq":15,"j":16,"jal":16,"jr":18,"lbu":19,"lhu":20,"ll":21,"lui":22,"lw":23,
-    "slt":24,"slti":25,"sltiu":26,"sltu":27,"srl":28,"sb":29,"sc":30,"sh":31,"sw":32,"sub":33,"subu":34,"mfhi":35,"mflo":36}
+    diccionario1 = {"add":1,"addu":1,"addi":2,"addiu":2,"and":1,"andi":2,"div":3,"divu":3,"mult":3,"multu":3,
+    "nor":1,"or":1,"ori":2,"sll":2,"beq":4,"j":5,"jal":5,"jr":6,"lbu":7,"lhu":7,"ll":7,"lui":7,"lw":7,
+    "slt":1,"slti":2,"sltiu":2,"sltu":1 ,"srl":2,"sll":2,"sb":7,"sc":7,"sh":7,"sw":7,"sub":1,"subu":1,"mfhi":6,"mflo":6}
     for line in len(matrix):
         if(diccionario1[matrix[line]] == 1):
             if(len(matrix[line])!=4):
@@ -77,7 +77,7 @@ def verificar(matrix):
                 print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
                 return False
             else:
-                for i in range(1,len(matrix[line])):
+                for i in range(1,len(matrix[line])-1):
                     if(((matrix[line][i][0] == "$" and matrix[line][i][1] == "a" and matrix[line][i][2] == "t") or 
                     (matrix[line][i][0] == "$" and matrix[line][i][1] =="v" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
                     (matrix[line][i][0] == "$" and matrix[line][i][1] =="a" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3")) or
@@ -90,8 +90,25 @@ def verificar(matrix):
                         print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
                         return False
         elif(diccionario1[matrix[line]] == 3):
+            if(len(matrix[line])!=3):
+                print("Su codigo presenta un eror en la linea " ,line ,"\n")
+                return False
+            else:
+                for i in range(1,len(matrix[line])):
+                    if(((matrix[line][i][0] == "$" and matrix[line][i][1] == "a" and matrix[line][i][2] == "t") or 
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="v" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="a" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="t" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="s" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7" or matrix[line][i][2] == "8" or matrix[line][i][2] == "9")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="k" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "s" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "f" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "r" and matrix[line][i][2] == "a")) == False):
+                        print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
+                        return False
+        elif(diccionario1[matrix[line]] == 4):
             if(len(matrix[line])!=4):
-                print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
+                print("Su codigo presenta un eror en la linea " ,line ,"\n")
                 return False
             else:
                 for i in range(1,len(matrix[line])-1):
@@ -106,141 +123,63 @@ def verificar(matrix):
                     (matrix[line][i][0] == "$" and matrix[line][i][1] == "r" and matrix[line][i][2] == "a")) == False):
                         print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
                         return False
-                if((matrix[line][3][0] == "0" and matrix[line][3][1] == "x" ) == False):
+                existe = False
+                for i in range(len(matrix)):
+                    if(len(matrix[i]) == 1 ):
+                        matrix[i][0].replace(":","")
+                        if(matrix[line][3] == matrix[i][0]):
+                            existe = True
+                if(existe==False):
                     print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
                     return False
-        elif(diccionario1[matrix[line]] == 4):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
         elif(diccionario1[matrix[line]] == 5):
-            if(len(matrix[line])==1):
+            if(len(matrix[line])!=2):
                 print("Su codigo presenta un eror en la linea " ,line ,"\n")
                 return False
+            else:
+                existe = False
+                for i in range(len(matrix)):
+                    if(len(matrix[i]) == 1 ):
+                        matrix[i][0].replace(":","")
+                        if(matrix[line][1] == matrix[i][0]):
+                            existe = True
+                if(existe==False):
+                    print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
+                    return False
         elif(diccionario1[matrix[line]] == 6):
-            if(len(matrix[line])==1):
+            if(len(matrix[line])!=2):
                 print("Su codigo presenta un eror en la linea " ,line ,"\n")
                 return False
+            else:
+                for i in range(1,len(matrix[line])):
+                    if(((matrix[line][i][0] == "$" and matrix[line][i][1] == "a" and matrix[line][i][2] == "t") or 
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="v" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="a" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="t" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="s" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7" or matrix[line][i][2] == "8" or matrix[line][i][2] == "9")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="k" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "s" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "f" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "r" and matrix[line][i][2] == "a")) == False):
+                        print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
+                        return False
         elif(diccionario1[matrix[line]] == 7):
-            if(len(matrix[line])==1):
+            if(len(matrix[line])!=3):
                 print("Su codigo presenta un eror en la linea " ,line ,"\n")
                 return False
-        elif(diccionario1[matrix[line]] == 8):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 9):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 10):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 11):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 12):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 13):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 14):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 15):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 16):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 17):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 18):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 19):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 20):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 21):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 22):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 23):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 24):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 25):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 26):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 27):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 28):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 29):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 30):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 31):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 32):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 33):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 34):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 35):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
-        elif(diccionario1[matrix[line]] == 36):
-            if(len(matrix[line])==1):
-                print("Su codigo presenta un eror en la linea " ,line ,"\n")
-                return False
+            else:
+                for i in range(1,len(matrix[line])-1):
+                    if(((matrix[line][i][0] == "$" and matrix[line][i][1] == "a" and matrix[line][i][2] == "t") or 
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="v" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="a" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="t" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="s" and (matrix[line][i][2] == "0" or matrix[line][i][2] == "1" or matrix[line][i][2] == "2" or matrix[line][i][2] == "3" or matrix[line][i][2] == "4" or matrix[line][i][2] == "5" or matrix[line][i][2] == "6" or matrix[line][i][2] == "7" or matrix[line][i][2] == "8" or matrix[line][i][2] == "9")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] =="k" and (matrix[line][i][2] == "1" or matrix[line][i][2] == "0")) or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "s" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "f" and matrix[line][i][2] == "p") or
+                    (matrix[line][i][0] == "$" and matrix[line][i][1] == "r" and matrix[line][i][2] == "a")) == False):
+                        print("Su codigo presenta un eror en la linea " ,line+1 ,"\n")
+                        return False
 def main():
     opcion = 0
     clear()
