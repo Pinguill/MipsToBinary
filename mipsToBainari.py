@@ -21,7 +21,6 @@ def contadorDeCiclos(matriz):
             for j in range(i, len(matriz)):
                 if(flag == False):
                     ciclos2 += 3
-                    print(matriz[j][0])
                     if matriz[j][0] == "lb" or matriz[j][0] == "lbu" or matriz[j][0] == "lh" or matriz[j][0] == "lhu" or matriz[j][0] == "lw" :
                         ciclos2 += 5
                         i += 1
@@ -100,7 +99,6 @@ def translateI(matriz, i, address):
                 rs = diccionarioRegister[matriz[i][3]]
                 immediate = format(int(matriz[i][2], 0), '016b')
             else:
-                print(matriz[i])
                 rt = diccionarioRegister[matriz[i][1]]
                 rs = diccionarioRegister[matriz[i][2]]
                 immediate = format(int(matriz[i][3], 0), '016b')
@@ -138,8 +136,6 @@ def lectura(matrix):
                 address.append(hexa)
                 hexa = hex(int(hexa, 0) + int("0x4", 0))
             i += 1
-
-    #print(matrix, address)
     
 def verificar(matrix):
     diccionario1 = {"add":1,"addu":1,"addi":2,"addiu":2,"and":1,"andi":2,"div":3,"divu":3,"mult":3,"multu":3,
