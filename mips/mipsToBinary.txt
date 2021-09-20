@@ -1,3 +1,15 @@
-codigo1 codigo 1.0
-codigo2
-codigo3
+lui $s0,0x1000
+ori $s0,$s0,0x0400
+lw $s3,12($s0)
+lw $s4,16($s0)
+lw $s5,0($s0)
+ciclo:
+beq $s3,$s4,salir
+sub $s5,$s5,$s3
+sw $s5,0($s0)
+j ciclo
+salir:
+lw $s1,4($s0)
+lw $s2,8($s0)
+add $s5,$s1,$s2
+jr $ra
